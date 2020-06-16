@@ -79,31 +79,31 @@ export const previewText = {
   // subheadline:
   //   "We offer a straightforward loan so you can focus on your program and transform your future.",
   cards: [
+    {
+      heading: "Deferred Repayment",
+      body: "Make no payments while you study and for three months after.",
+    },
+    {
+      heading: "Interest Only",
+      body:
+        "Make low interest-only payments while you study and for three months after completing your program.",
+    },
+    {
+      heading: "Immediate Repayment",
+      body: "Start paying your loan back one month after your program begins.",
+    },
     // {
-    //   heading: "Deferred Repayment",
-    //   body: "Make no payments while you study and for three months after.",
-    // },
-    // {
-    //   heading: "Interest Only",
+    //   heading: "36-Month Loan",
     //   body:
-    //     "Make low interest-only payments while you study and for three months after completing your program.",
+    //     "Pay off your loan faster. Start paying your loan back one month after your program begins, and make 36 monthly payments until your loan is repaid.",
+    //   // body:
+    //   //   "Start paying your loan back one month after your program begins, and make 36 monthly payments until your loan is repaid.",
     // },
     // {
-    //   heading: "Immediate Repayment",
-    //   body: "Start paying your loan back one month after your program begins.",
+    //   heading: "60-Month Loan",
+    //   body:
+    //     "Make smaller monthly payments. Start paying your loan back one month after your program begins, and make 60 monthly payments until your loan is repaid.",
     // },
-    {
-      heading: "36-Month Loan",
-      body:
-        "Pay off your loan faster. Start paying your loan back one month after your program begins, and make 36 monthly payments until your loan is repaid.",
-      // body:
-      //   "Start paying your loan back one month after your program begins, and make 36 monthly payments until your loan is repaid.",
-    },
-    {
-      heading: "60-Month Loan",
-      body:
-        "Make smaller monthly payments. Start paying your loan back one month after your program begins, and make 60 monthly payments until your loan is repaid.",
-    },
   ],
 }
 
@@ -112,10 +112,10 @@ export const faq = {
   costOfLiving: true, // true if at least one program has cost of living included
   costOfLivingPrograms: "Full Stack Web Development Online - Full Time program", // leave as empty string is cost of living availability is the same across all programs
   multCostOfLivingPrograms: false, // true if costOfLivingPrograms string has more than one program
-  interestOnly: false, // true if interest-only payments are an option
+  interestOnly: true, // true if interest-only payments are an option
   immediateRepayment: true, // true if immediate repayment is an option
   multipleLoanLengths: true, // true if 36 and 60 month options are both available
-  multipleLoanTypes: false, // true if both IR and IO are available
+  multipleLoanTypes: true, // true if both IR and IO are available
   multiPrograms: true, // only true if there are multiple programs
   onlinePrograms: false, // true if at least one program is remote/online
   schoolHQState: "WA",
@@ -145,10 +145,15 @@ export const faq = {
       colAmount: "$10,000",
     },
     {
-      programName:
-        "Full-Stack JavaScriptFull Stack Web Development Online - Full Time",
+      programName: "Full Stack Web Development Online - Full Time",
       maxAmount: "$10,960",
       col: true,
+      colAmount: "$10,000",
+    },
+    {
+      programName: "UX Design",
+      maxAmount: "$10,960",
+      col: false,
       colAmount: "$10,000",
     },
   ],
@@ -344,6 +349,71 @@ export const programLoanInfo = [
   {
     name: "Full Stack Web Development Online - Part Time",
     url: "https://my.skills.fund/application?lenderCode=SKACFSWD20",
+    loanInfo: {
+      // match loanInfo in first metro below
+      maxLoanAmt: 10960,
+      loanTerm36: true,
+      loanTerm60: true,
+      "Interest Only": null,
+      "Immediate Repayment": {
+        apr36: 12.36,
+        apr60: 13.14,
+      },
+    },
+    defaultLoanType: "Immediate Repayment", // leave at 0 for interest-only, set to 1 for immediate repayment
+    showMetros: false, // true if there are multiple metros with different tuition amounts for the same program
+    showLoanTypes: false, // true if both IR and IO are available
+    loanTypes: ["Immediate Repayment"],
+    locations: ["Metro 1", "Metro 2", "Metro 3"],
+    metros: [
+      // list in same order as locations array above
+      {
+        location: "Metro 1",
+        loanInfo: {
+          // // match loanInfo to Program 1 above
+          maxLoanAmt: 10960,
+          loanTerm36: true,
+          loanTerm60: true,
+          "Interest Only": null,
+          "Immediate Repayment": {
+            apr36: 12.36,
+            apr60: 13.14,
+          },
+        },
+      },
+      {
+        location: "Metro 2",
+        loanInfo: {
+          maxLoanAmt: 15545,
+          loanTerm36: true,
+          loanTerm60: true,
+          "Interest Only": {
+            k: 5,
+            apr36: 11.16,
+            apr60: 12.51,
+          },
+          "Immediate Repayment": null,
+        },
+      },
+      {
+        location: "Metro 3",
+        loanInfo: {
+          maxLoanAmt: 20545,
+          loanTerm36: true,
+          loanTerm60: true,
+          "Interest Only": {
+            k: 5,
+            apr36: 11.16,
+            apr60: 12.51,
+          },
+          "Immediate Repayment": null,
+        },
+      },
+    ],
+  },
+  {
+    name: "UX Design",
+    url: "https://my.skills.fund/application?lenderCode=SKACUX18",
     loanInfo: {
       // match loanInfo in first metro below
       maxLoanAmt: 10960,
